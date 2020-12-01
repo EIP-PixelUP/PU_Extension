@@ -2,7 +2,7 @@
   "name": "Pixel Up",
   "version": "1.0",
   "description": "Up your plannet",
-  "permissions": ["storage"],
+  "permissions": ["activeTab","declarativeContent","storage"],
   "background": {
     "persistent": false,
     "scripts": ["background.js"]
