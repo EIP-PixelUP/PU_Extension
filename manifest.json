@@ -1,11 +1,12 @@
 {
-  "name": "Pixel Up",
+  "name": "forward_test_1",
   "version": "1.0",
-  "description": "Up your plannet",
-  "permissions": ["activeTab","declarativeContent","storage"],
+  "description": "Testing shit",
+  "permissions": ["tabs", "activeTab", "declarativeContent", "storage"],
+  "options_page": "options.html",
   "background": {
-    "persistent": false,
-    "scripts": ["background.js"]
+    "scripts": ["background.js"],
+    "persistent": false
   },
   "page_action": {
     "default_popup": "popup.html",
