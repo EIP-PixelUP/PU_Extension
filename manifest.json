@@ -4,10 +4,12 @@
   "description": "Testing shit",
   "permissions": ["tabs", "activeTab", "declarativeContent", "storage"],
   "options_page": "options.html",
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/watch*"],
+      "js": ["upscale.js"]
+    }
+  ],
   "page_action": {
     "default_popup": "popup.html",
     "default_icon": {
