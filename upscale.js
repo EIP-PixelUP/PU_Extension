@@ -4,11 +4,12 @@ video.style.visibility = 'hidden';
 const swap = document.createElement('button');
 swap.style.position = 'fixed';
 swap.textContent = 'show original';
-video.parentElement.after(swap);
+video.parentElement.parentElement.after(swap);
 
 XbrWasm.ready.then(() => {
     const xbrwasm = new XbrWasm(video, 3); // Scaling factor of 3
     const canvas = xbrwasm.destCanvas;
+    canvas.style.position = 'absolute'
     video.after(canvas);
 
     function resize() {
