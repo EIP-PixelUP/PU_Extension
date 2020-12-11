@@ -1,28 +1,39 @@
 const video = document.getElementsByTagName('video')[0];
 video.style.visibility = 'hidden';
-const ratio = video.videoHeight / video.videoWidth;
 
-const canvas = document.createElement('canvas');
-canvas.style.position = 'absolute';
-const ctx = canvas.getContext('2d', { alpha: false });
+const swap = document.createElement('button');
+swap.style.position = 'fixed';
+swap.textContent = 'show original';
+video.parentElement.after(swap);
 
-let width, height, size;
-function resize() {
-    width = canvas.width = video.offsetWidth;
-    height = canvas.height = Math.floor(width * ratio);
-    size = width * height * 4;
-}
+XbrWasm.ready.then(() => {
+    const xbrwasm = new XbrWasm(video, 3); // Scaling factor of 3
+    const canvas = xbrwasm.destCanvas;
+    video.after(canvas);
 
-new ResizeObserver(resize).observe(video), resize();
-video.after(canvas);
-
-(function step() {
-    requestAnimationFrame(step);
-
-    if (width && height) {
-        ctx.drawImage(video, 0, 0, width, height);
-        let frame = ctx.getImageData(0, 0, width, height);
-        for (let i = 0; i < size; i += 4) frame.data[i] = 255;
-        ctx.putImageData(frame, 0, 0);
+    function resize() {
+        canvas.style.width = video.style.width;
+        canvas.style.height = video.style.height;
     }
-})();
+    new ResizeObserver(resize).observe(video), resize();
+
+    let original = false;
+    swap.onclick = () => {
+        original = !original;
+
+        if (original) {
+            video.style.visibility = '';
+            canvas.style.visibility = 'hidden';
+            swap.textContent = 'show upscaled';
+        } else {
+            video.style.visibility = 'hidden';
+            canvas.style.visibility = '';
+            swap.textContent = 'show original';
+        }
+    }
+
+    (function step() {
+        xbrwasm.draw();
+        requestAnimationFrame(step);
+    })();
+});

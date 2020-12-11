@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/watch*"],
-      "js": ["upscale.js"]
+      "js": ["XbrWasm.js", "upscale.js"]
     }
   ],
   "page_action": {
