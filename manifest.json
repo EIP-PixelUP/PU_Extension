@@ -1,29 +1,27 @@
 {
-  "name": "forward_test_1",
-  "version": "1.0",
-  "description": "Testing shit",
-  "permissions": ["tabs", "activeTab", "declarativeContent", "storage"],
-  "options_page": "options.html",
-  "content_scripts": [
-    {
-      "matches": ["https://www.youtube.com/watch*"],
-      "js": ["upscale.js"]
-    }
-  ],
-  "page_action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/icon16.png",
-      "32": "images/icon32.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
-    }
-  },
+  "manifest_version": 2,
+  "version": "0.2.0",
+  "name": "pixelUP",
   "icons": {
-    "16": "images/icon16.png",
-    "32": "images/icon32.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
+    "500": "icon.svg"
   },
-  "manifest_version": 2
+  "page_action": {
+    "default_icon": "icon.svg",
+    "default_popup": "popup.html",
+    "show_matches": [
+      "https://www.youtube.com/*",
+      "https://www.twitch.tv/*"
+    ]
+  },
+  "content_scripts": [{
+    "js": [
+      "upscale.js"
+    ],
+    "matches": [
+      "https://www.youtube.com/*",
+      "https://www.twitch.tv/*"
+    ]
+  }],
+  "web_accessible_resources": [],
+  "permissions": ["storage"]
 }
