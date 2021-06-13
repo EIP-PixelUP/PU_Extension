@@ -16,6 +16,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Install deps
+        run: yarn
 
       - name: Lint the code
         run: yarn run lint
