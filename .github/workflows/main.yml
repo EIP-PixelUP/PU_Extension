@@ -17,14 +17,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Lint the code
+        run: yarn run lint
+        
+      - name: test the format
+        run: yarn run format
+        
+      - name: build the extension
+        run: yarn run bundle
 
       - name: produce artifact
         uses: actions/upload-artifact@v2
         with:
-          name: website
+          name: extension
           path: |
-            .
-            !.git
-            !.github
+            ./out
