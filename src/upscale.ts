@@ -7,6 +7,7 @@ const startUpscaling = (video: Video) => {
   if (video.canvas) return;
 
   const canvas = (video.canvas = document.createElement('canvas'));
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const context = canvas.getContext('2d', { alpha: false })!;
   canvas.style.position = 'absolute';
   video.style.visibility = 'hidden';
