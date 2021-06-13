@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint .",
     "format": "prettier --check .",
-    "bundle": "./bundle.sh"
+    "build": "./build.sh chrome firefox edge opera"
   },
   "dependencies": {
     "webextension-polyfill": ">=0.6 <1"

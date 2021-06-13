@@ -4,8 +4,6 @@ const options = {
 
 type Options = typeof options;
 
-import './webextension-polyfill.js';
-
 export default new Proxy(Object.assign(options, await browser.storage.local.get()), {
   set: <Key extends keyof Options>(_: Options, key: Key, value: Options[Key]) =>
     !void browser.storage.local.set({ [key]: (options[key] = value) }),
