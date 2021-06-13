@@ -16,16 +16,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Install deps
         run: yarn
 
       - name: Lint the code
         run: yarn run lint
-        
+
       - name: test the format
         run: yarn run format
-        
+
       - name: build the extension
         run: yarn run bundle
 
@@ -33,5 +33,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: extension
-          path: |
-            ./out
+          path: ./pixelUP.zip
