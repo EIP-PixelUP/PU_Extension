@@ -5,5 +5,5 @@
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier"
   ],
-  "parserOptions": { "project": "tsconfig.json" }
+  "parserOptions": { "project": "*/tsconfig.json" }
 }

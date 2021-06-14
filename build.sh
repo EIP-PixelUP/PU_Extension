@@ -5,6 +5,8 @@ for dep in $(jq --raw-output '.dependencies|keys|@sh' package.json | xargs); do
     mkdir --parents out/$(dirname $dep) && ln --force $main out/$dep.js
 done
 
-tsc && echo "import(browser.runtime.getURL('upscale.js'))" > out/content.js
+tsc --project src --outDir out
+echo "import(browser.runtime.getURL('upscale.js'))" > out/content.js
 convert -transparent white src/icon.svg out/icon.png
+
 for browser do (cd out && zip --recurse-paths ../pixelUP-$browser .) done
