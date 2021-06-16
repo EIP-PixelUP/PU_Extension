@@ -9,9 +9,11 @@
     "format": "prettier --check .",
     "build": "./build.sh chrome firefox edge opera",
     "postinstall": "playwright install-deps",
-    "test": "playwright test --config tests/playwright.json"
+    "test": "playwright test --config tests/playwright.json",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "husky": "^6.0.0",
     "webextension-polyfill": ">=0.6 <1"
   },
   "devDependencies": {
