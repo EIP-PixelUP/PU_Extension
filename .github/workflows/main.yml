@@ -30,7 +30,7 @@ jobs:
         run: yarn run build
 
       - name: Test the extension
-        run: yarn run test
+        run: xvfb-run yarn run test
 
       - name: Store as artifact
         uses: actions/upload-artifact@v2
