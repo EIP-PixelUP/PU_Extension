@@ -8,5 +8,8 @@ done
 tsc --project src --outDir out
 echo "import(browser.runtime.getURL('upscale.js'))" > out/content.js
 convert -transparent white src/icon.svg out/icon.png
+web-ext build --source-dir out --artifacts-dir . --overwrite-dest
 
-for browser do (cd out && zip --recurse-paths ../pixelUP-$browser .) done
+for browser do case $browser in
+    *) echo "Signing extensions for $browser is not supported yet" >&2
+esac done
